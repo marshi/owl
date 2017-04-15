@@ -1,0 +1,11 @@
+spring:
+  session.store-type: none
+security:
+  basic:
+    enabled: false
+  datasource:
+    url: jdbc:mysql://localhost/owl
+    username: owl_r
+    password: ueaQyWQ9Lxsv
+    driverClassName: com.mysql.jdbc.Driver
+
