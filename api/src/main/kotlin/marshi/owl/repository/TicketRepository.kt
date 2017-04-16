@@ -1,5 +1,9 @@
 package marshi.owl.repository
 
+import owl.datasource.entity.Ticket
+import owl.datasource.entity.TicketExample
+import owl.datasource.mapper.TicketMapper
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Repository
 
 /**
@@ -8,7 +12,13 @@ import org.springframework.stereotype.Repository
 @Repository
 class TicketRepository {
 
-    fun create(projectId: Long, ticketId: Long) {
+    @Autowired
+    private lateinit var ticketMapper: TicketMapper
+
+    fun create(projectId: Long) {
+        val ticket = Ticket()
+        ticket.projectId = projectId
+        val ticketId = ticketMapper.insertSelective(ticket)
         println(""+ projectId + " "  + ticketId)
     }
 

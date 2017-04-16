@@ -13,8 +13,8 @@ class TicketService {
     @Autowired
     lateinit var ticketRepository: TicketRepository
 
-    fun create(projectId: Long, ticketId: Long) {
-        ticketRepository.create(projectId, ticketId)
+    fun create(projectId: Long) {
+        ticketRepository.create(projectId)
     }
 
 }

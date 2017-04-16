@@ -17,20 +17,22 @@
             <property name="forceBigDecimals" value="false" />
         </javaTypeResolver>
 
-        <javaModelGenerator targetPackage="datasource.entity" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="owl.datasource.entity" targetProject="src/main/java">
             <property name="enableSubPackages" value="true" />
             <property name="trimStrings" value="true" />
         </javaModelGenerator>
 
         <javaClientGenerator type="ANNOTATEDMAPPER"
-                             implementationPackage="datasource.mapper"
-                             targetPackage="datasource.mapper"
+                             implementationPackage="owl.datasource.mapper"
+                             targetPackage="owl.datasource.mapper"
                              targetProject="src/main/java"
         >
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
-        <table tableName="ticket" domainObjectName="Ticket" modelType="flat"/>
+        <table tableName="ticket" domainObjectName="Ticket" modelType="flat">
+            <generatedKey column="id" sqlStatement="MySql"/>
+        </table>
 
     </context>
 </generatorConfiguration>
