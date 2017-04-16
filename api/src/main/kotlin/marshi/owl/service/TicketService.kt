@@ -1,5 +1,6 @@
 package marshi.owl.service
 
+import marshi.owl.entity.TicketModel
 import marshi.owl.repository.TicketRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
@@ -13,8 +14,8 @@ class TicketService {
     @Autowired
     lateinit var ticketRepository: TicketRepository
 
-    fun create(projectId: Long) {
-        ticketRepository.create(projectId)
+    fun create(projectId: Long, ticketModel: TicketModel) {
+        ticketRepository.create(projectId, ticketModel)
     }
 
 }
