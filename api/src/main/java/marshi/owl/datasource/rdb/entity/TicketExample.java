@@ -1,4 +1,4 @@
-package owl.datasource.entity;
+package marshi.owl.datasource.rdb.entity;
 
 import java.util.ArrayList;
 import java.util.List;

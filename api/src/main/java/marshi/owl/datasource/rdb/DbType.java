@@ -1,4 +1,4 @@
-package owl.datasource;
+package marshi.owl.datasource.rdb;
 
 /**
  * Created by a13178 on 2017/04/16.

@@ -8,7 +8,7 @@
 
     <context id="MYSQL_Tables" targetRuntime="MyBatis3">
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/owl"
+                        connectionURL="jdbc:mysql://localhost:3306/marshi.owl"
                         userId="owl_r"
                         password="ueaQyWQ9Lxsv">
         </jdbcConnection>
@@ -17,14 +17,14 @@
             <property name="forceBigDecimals" value="false" />
         </javaTypeResolver>
 
-        <javaModelGenerator targetPackage="owl.datasource.entity" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="marshi.owl.datasource.rdb.entity" targetProject="src/main/java">
             <property name="enableSubPackages" value="true" />
             <property name="trimStrings" value="true" />
         </javaModelGenerator>
 
         <javaClientGenerator type="ANNOTATEDMAPPER"
-                             implementationPackage="owl.datasource.mapper"
-                             targetPackage="owl.datasource.mapper"
+                             implementationPackage="marshi.owl.datasource.rdb.mapper"
+                             targetPackage="marshi.owl.datasource.rdb.mapper"
                              targetProject="src/main/java"
         >
             <property name="enableSubPackages" value="true" />

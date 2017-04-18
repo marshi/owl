@@ -1,10 +1,8 @@
 package marshi.owl.entity
 
-import lombok.AllArgsConstructor
-import lombok.Getter
 import lombok.NoArgsConstructor
 import lombok.Setter
-import owl.datasource.entity.Ticket
+import marshi.owl.datasource.graph.entity.Ticket
 
 /**
  * Created by a13178 on 2017/04/17.
@@ -12,11 +10,11 @@ import owl.datasource.entity.Ticket
 @NoArgsConstructor
 @Setter
 class TicketModel(
-    var id: Long? = null,
-    var title: String? = null,
-    var content: String? = null,
-    var projectId: Long? = null,
-    var assigneeId: Int? = null
+        var id: Long? = null,
+        var title: String? = null,
+        var content: String? = null,
+        var projectId: Long? = null,
+        var assigneeId: Int? = null
 ){
 
     fun convertTo(): Ticket {
@@ -29,4 +27,20 @@ class TicketModel(
         return ticket
     }
 
+    companion object {
+        @JvmStatic
+        fun convertFrom(ticket: Ticket): TicketModel {
+            val ticketModel = TicketModel(
+                    ticket.id,
+                    ticket.title,
+                    ticket.content,
+                    ticket.projectId,
+                    ticket.assigneeId
+            )
+            return ticketModel
+        }
+    }
+
+
 }
+

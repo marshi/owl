@@ -14,9 +14,12 @@ class TicketFacade(
         @Autowired val ticketService: TicketService
 ) {
 
-    @Transactional
     fun create(projectId: Long, ticketModel: TicketModel) {
         ticketService.create(projectId, ticketModel)
+    }
+
+    fun find(projectId: Long, ticketId: Long): TicketModel {
+        return ticketService.find(projectId, ticketId)
     }
 
 }

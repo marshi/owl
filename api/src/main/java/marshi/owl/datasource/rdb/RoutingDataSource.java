@@ -1,8 +1,7 @@
-package owl.datasource;
+package marshi.owl.datasource.rdb;
 
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
-import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 import java.util.Map;
 

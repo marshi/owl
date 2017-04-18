@@ -8,7 +8,8 @@ import org.springframework.boot.bind.RelaxedPropertyResolver
 import org.springframework.context.ApplicationContextInitializer
 import org.springframework.context.ConfigurableApplicationContext
 import org.springframework.jdbc.datasource.DataSourceTransactionManager
-import owl.datasource.RoutingDataSource
+import marshi.owl.datasource.rdb.DbType
+import marshi.owl.datasource.rdb.RoutingDataSource
 import java.text.MessageFormat
 
 /**
@@ -21,7 +22,7 @@ class DatasourceInitializer : ApplicationContextInitializer<ConfigurableApplicat
         val resolver = RelaxedPropertyResolver(environment)
 
         val datasourceMap = HashMap<Any, Any>()
-        owl.datasource.DbType.values().forEach {
+        DbType.values().forEach {
             val subProperties = resolver.getSubProperties(groupKey("jdbc.datasource.owl", it))
             val url  = subProperties.get("url") as String?
             val username = subProperties.get("username") as String?
@@ -36,10 +37,9 @@ class DatasourceInitializer : ApplicationContextInitializer<ConfigurableApplicat
             datasourceMap.set(it.label(), datasource)
         }
         registerBean(applicationContext, datasourceMap)
-        println("aiueo")
     }
 
-    private fun groupKey(prefix: String, dbType: owl.datasource.DbType): String {
+    private fun groupKey(prefix: String, dbType: DbType): String {
         return MessageFormat.format("{0}.{1}.", prefix, dbType.label())
     }
 
@@ -49,19 +49,19 @@ class DatasourceInitializer : ApplicationContextInitializer<ConfigurableApplicat
         val beanFactory: DefaultListableBeanFactory = applicationContext.beanFactory as DefaultListableBeanFactory
         val dataSource = RoutingDataSource(dataSources)
         dataSource.afterPropertiesSet()
-        val name = MessageFormat.format("{0}", "owl.datasource")
+        val name = MessageFormat.format("{0}", "marshi.owl.datasource")
 //        beanFactory.registerSingleton(name, dataSource)
         beanFactory.registerDisposableBean(name, dataSource as DisposableBean)
 
         val sqlSessionFactoryBean = SqlSessionFactoryBean()
         sqlSessionFactoryBean.setDataSource(dataSource)
         beanFactory.registerSingleton(
-                MessageFormat.format("{0}.sessionFactory", "owl"),
+                MessageFormat.format("{0}.sessionFactory", "marshi.owl"),
                 sqlSessionFactoryBean.getObject()
         )
 
         val dataSourceTransactionManager = DataSourceTransactionManager(dataSource)
-        beanFactory.registerSingleton("owl.transaction", dataSourceTransactionManager)
+        beanFactory.registerSingleton("transactionManager", dataSourceTransactionManager)
     }
 
 }

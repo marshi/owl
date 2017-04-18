@@ -1,8 +1,8 @@
 package marshi.owl.interceptor
 
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter
-import owl.datasource.DbType
-import owl.datasource.SchemeContextHolder
+import marshi.owl.datasource.rdb.DbType
+import marshi.owl.datasource.rdb.SchemeContextHolder
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 

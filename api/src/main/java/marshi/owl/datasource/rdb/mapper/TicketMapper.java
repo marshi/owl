@@ -1,7 +1,7 @@
-package owl.datasource.mapper;
+package marshi.owl.datasource.rdb.mapper;
 
-import owl.datasource.entity.Ticket;
-import owl.datasource.entity.TicketExample;
+import marshi.owl.datasource.rdb.entity.Ticket;
+import marshi.owl.datasource.rdb.entity.TicketExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.DeleteProvider;

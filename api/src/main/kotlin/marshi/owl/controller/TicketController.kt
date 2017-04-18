@@ -3,9 +3,7 @@ package marshi.owl.controller
 import marshi.owl.entity.TicketModel
 import marshi.owl.facade.TicketFacade
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.web.bind.annotation.*
-import javax.sql.DataSource
 
 /**
  *
@@ -20,9 +18,10 @@ class TicketController(
         ticketFacade.create(projectId, ticketModel)
     }
 
-    @RequestMapping(value = "/hello", method = arrayOf(RequestMethod.GET))
-    fun get() {
-        println("aiueo")
+    @RequestMapping(value = "/projects/{projectId}/tickets/{ticketId}", method = arrayOf(RequestMethod.GET))
+    fun get(@PathVariable projectId: Long, @PathVariable ticketId: Long): TicketModel {
+        return ticketFacade.find(projectId, ticketId)
     }
 
 }
+

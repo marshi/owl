@@ -1,4 +1,4 @@
-package owl.datasource.mapper;
+package marshi.owl.datasource.rdb.mapper;
 
 import static org.apache.ibatis.jdbc.SqlBuilder.BEGIN;
 import static org.apache.ibatis.jdbc.SqlBuilder.DELETE_FROM;
@@ -13,10 +13,10 @@ import static org.apache.ibatis.jdbc.SqlBuilder.UPDATE;
 import static org.apache.ibatis.jdbc.SqlBuilder.VALUES;
 import static org.apache.ibatis.jdbc.SqlBuilder.WHERE;
 
-import owl.datasource.entity.Ticket;
-import owl.datasource.entity.TicketExample.Criteria;
-import owl.datasource.entity.TicketExample.Criterion;
-import owl.datasource.entity.TicketExample;
+import marshi.owl.datasource.rdb.entity.Ticket;
+import marshi.owl.datasource.rdb.entity.TicketExample.Criteria;
+import marshi.owl.datasource.rdb.entity.TicketExample.Criterion;
+import marshi.owl.datasource.rdb.entity.TicketExample;
 import java.util.List;
 import java.util.Map;
 
