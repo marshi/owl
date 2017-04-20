@@ -4,6 +4,7 @@ import marshi.owl.entity.TicketModel
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import marshi.owl.datasource.graph.repository.TicketGraphRepository
+import marshi.owl.datasource.rdb.repository.SequenceRepository
 
 /**
  * Created by a13178 on 2017/04/15.
@@ -14,6 +15,7 @@ class TicketService(
 ) {
 
     fun create(projectId: Long, ticketModel: TicketModel) {
+        ticketModel.projectId = projectId
         ticketGraphRepository.save(ticketModel.convertTo())
     }
 

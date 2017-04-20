@@ -33,8 +33,7 @@ class OwlAppConfiguration {
     fun sessionFactory(configuration: org.neo4j.ogm.config.Configuration,
                        applicationContext: ApplicationContext,
                        eventListeners: ObjectProvider<List<EventListener>> ): SessionFactory {
-        val sessionFactory: SessionFactory  = SessionFactory(configuration,
-                "marshi.owl.datasource.graph")
+        val sessionFactory: SessionFactory  = SessionFactory(configuration, "marshi.owl.datasource.graph")
 //        val providedEventListeners: List<EventListener>  = eventListeners.ifAvailable
 //        for (eventListener: EventListener in providedEventListeners) {
 //            sessionFactory.register(eventListener)

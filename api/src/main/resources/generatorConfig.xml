@@ -6,9 +6,9 @@
 <generatorConfiguration>
     <!--<properties resource="generate.properties"/>-->
 
-    <context id="MYSQL_Tables" targetRuntime="MyBatis3">
+    <context id="owl_table" targetRuntime="MyBatis3">
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/marshi.owl"
+                        connectionURL="jdbc:mysql://localhost:3306/owl"
                         userId="owl_r"
                         password="ueaQyWQ9Lxsv">
         </jdbcConnection>
@@ -35,4 +35,5 @@
         </table>
 
     </context>
+
 </generatorConfiguration>
