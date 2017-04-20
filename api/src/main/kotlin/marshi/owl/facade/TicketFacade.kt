@@ -1,5 +1,6 @@
 package marshi.owl.facade
 
+import marshi.owl.entity.NextStepTicketModel
 import marshi.owl.entity.TicketModel
 import marshi.owl.service.TicketService
 import org.springframework.beans.factory.annotation.Autowired
@@ -14,12 +15,16 @@ class TicketFacade(
         @Autowired val ticketService: TicketService
 ) {
 
-    fun create(projectId: Long, ticketModel: TicketModel) {
-        ticketService.create(projectId, ticketModel)
+    fun create(ticketModel: TicketModel) {
+        ticketService.create(ticketModel)
     }
 
-    fun find(projectId: Long, ticketId: Long): TicketModel {
-        return ticketService.find(projectId, ticketId)
+    fun find(ticketId: Long): TicketModel {
+        return ticketService.find(ticketId)
+    }
+
+    fun  nextStep(ticketId: Long, nextStepTicketModel: NextStepTicketModel) {
+        ticketService.linkPathToNextStep(ticketId, nextStepTicketModel)
     }
 
 }
