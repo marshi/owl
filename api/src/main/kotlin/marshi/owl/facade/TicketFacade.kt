@@ -1,5 +1,6 @@
 package marshi.owl.facade
 
+import marshi.owl.TicketNotFound
 import marshi.owl.entity.NextStepTicketModel
 import marshi.owl.entity.TicketModel
 import marshi.owl.service.TicketService
@@ -20,11 +21,15 @@ class TicketFacade(
     }
 
     fun find(ticketId: Long): TicketModel {
-        return ticketService.find(ticketId)
+        return ticketService.find(ticketId) ?: throw TicketNotFound("ticket not found")
     }
 
     fun  nextStep(ticketId: Long, nextStepTicketModel: NextStepTicketModel) {
         ticketService.linkPathToNextStep(ticketId, nextStepTicketModel)
+    }
+
+    fun delete(ticketId: Long) {
+        ticketService.delete(ticketId)
     }
 
 }

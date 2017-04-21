@@ -19,13 +19,14 @@ class TicketModel(
 ){
 
     fun convertTo(): Ticket {
-        val ticket = Ticket()
-        ticket.id = id
-        ticket.title = title
-        ticket.content = content
-        ticket.assigneeId = assigneeId
-        ticket.projectId = projectId
-        ticket.nextStepTickets = nextStepTickets?.map { it.convertTo() }?.toSet()
+        val ticket = Ticket(
+                id,
+                nextStepTickets?.map { it.convertTo() }?.toSet(),
+                projectId,
+                title,
+                assigneeId,
+                content
+        )
         return ticket
     }
 

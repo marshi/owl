@@ -19,17 +19,49 @@ import java.util.Set;
 public class Ticket {
 
     @GraphId
-    public Long id;
+    private Long id;
 
     @Relationship(type = "path")
-    public Set<Ticket> nextStepTickets;
+    private Set<Ticket> nextStepTickets;
 
-    public Long projectId;
+    private Long projectId;
 
-    public String title;
+    private String title;
 
-    public Integer assigneeId;
+    private Integer assigneeId;
 
-    public String content;
+    private String content;
 
+    public Ticket(Long id, Set<Ticket> nextStepTickets, Long projectId, String title, Integer assigneeId, String content) {
+        this.id = id;
+        this.nextStepTickets = nextStepTickets;
+        this.projectId = projectId;
+        this.title = title;
+        this.assigneeId = assigneeId;
+        this.content = content;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public Set<Ticket> getNextStepTickets() {
+        return nextStepTickets;
+    }
+
+    public Long getProjectId() {
+        return projectId;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public Integer getAssigneeId() {
+        return assigneeId;
+    }
+
+    public String getContent() {
+        return content;
+    }
 }
