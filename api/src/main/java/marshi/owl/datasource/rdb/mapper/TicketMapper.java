@@ -62,7 +62,6 @@ public interface TicketMapper {
         "#{title,jdbcType=VARCHAR}, #{assigneeId,jdbcType=INTEGER}, ",
         "#{content,jdbcType=LONGVARCHAR})"
     })
-    @SelectKey(statement="SELECT LAST_INSERT_ID()", keyProperty="id", before=true, resultType=Long.class)
     int insert(Ticket record);
 
     /**
@@ -72,7 +71,6 @@ public interface TicketMapper {
      * @mbggenerated Thu Apr 20 23:58:39 JST 2017
      */
     @InsertProvider(type=TicketSqlProvider.class, method="insertSelective")
-    @SelectKey(statement="SELECT LAST_INSERT_ID()", keyProperty="id", before=true, resultType=Long.class)
     int insertSelective(Ticket record);
 
     /**
