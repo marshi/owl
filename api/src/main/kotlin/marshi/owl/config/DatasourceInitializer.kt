@@ -3,13 +3,13 @@ package marshi.owl.config
 import org.mybatis.spring.SqlSessionFactoryBean
 import org.springframework.beans.factory.DisposableBean
 import org.springframework.beans.factory.support.DefaultListableBeanFactory
-import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder
-import org.springframework.boot.bind.RelaxedPropertyResolver
 import org.springframework.context.ApplicationContextInitializer
 import org.springframework.context.ConfigurableApplicationContext
 import org.springframework.jdbc.datasource.DataSourceTransactionManager
 import marshi.owl.datasource.rdb.DbType
 import marshi.owl.datasource.rdb.RoutingDataSource
+import org.springframework.boot.jdbc.DataSourceBuilder
+import org.springframework.core.env.get
 import java.text.MessageFormat
 
 /**
@@ -19,15 +19,14 @@ class DatasourceInitializer : ApplicationContextInitializer<ConfigurableApplicat
 
     override fun initialize(applicationContext: ConfigurableApplicationContext) {
         val environment = applicationContext.environment
-        val resolver = RelaxedPropertyResolver(environment)
 
         val datasourceMap = HashMap<Any, Any>()
+        val datasourceKey = "jdbc.datasource.owl"
         DbType.values().forEach {
-            val subProperties = resolver.getSubProperties(groupKey("jdbc.datasource.owl", it))
-            val url  = subProperties.get("url") as String?
-            val username = subProperties.get("username") as String?
-            val password = subProperties.get("password") as String?
-            val driverName = subProperties.get("driverClassName") as String?
+            val url  = environment.get("$datasourceKey.${it.label()}.url") as String?
+            val username = environment.get("$datasourceKey.${it.label()}.username") as String?
+            val password = environment.get("$datasourceKey.${it.label()}.password") as String?
+            val driverName = environment.get("$datasourceKey.${it.label()}.driverClassName") as String?
             val datasource = DataSourceBuilder.create()
                     .driverClassName(driverName)
                     .username(username)

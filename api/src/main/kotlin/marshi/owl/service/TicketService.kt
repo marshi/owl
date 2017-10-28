@@ -30,8 +30,10 @@ class TicketService(
 //    }
 
     fun find(ticketId: Long): TicketModel? {
-        val ticketNode: TicketNode? = ticketGraphRepository.findOne(ticketId)
-        ticketNode ?: return null
+        val ticketNode: TicketNode = ticketGraphRepository.findById(
+                ticketId,
+                1
+        ).orElse(null) ?: return null
         return TicketModel.convertFromNode(ticketNode)
     }
 
@@ -45,7 +47,7 @@ class TicketService(
     }
 
     fun  delete(ticketId: Long) {
-        ticketGraphRepository.delete(ticketId)
+        ticketGraphRepository.deleteById(ticketId)
     }
 
     fun list(): List<TicketModel> {

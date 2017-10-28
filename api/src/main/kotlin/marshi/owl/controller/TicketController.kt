@@ -4,7 +4,6 @@ import marshi.owl.TicketNotFound
 import marshi.owl.entity.NextStepTicketModel
 import marshi.owl.entity.TicketModel
 import marshi.owl.facade.TicketFacade
-import org.apache.commons.collections4.CollectionUtils
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
