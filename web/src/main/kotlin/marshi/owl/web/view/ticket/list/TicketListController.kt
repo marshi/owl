@@ -13,8 +13,7 @@ class TicketListController(
 
     @RequestMapping(value = "/test", method = arrayOf(RequestMethod.GET))
     fun test(): ModelAndView {
-        val list = ticketFacade.list()
-        return ModelAndView("test")
+        return ticketFacade.list()
     }
 
 }
