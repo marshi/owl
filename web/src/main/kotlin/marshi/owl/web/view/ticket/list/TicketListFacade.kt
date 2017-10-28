@@ -1,6 +1,6 @@
 package marshi.owl.web.view.ticket.list
 
-import service.TicketService
+import marshi.owl.web.service.TicketService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import org.springframework.web.servlet.ModelAndView

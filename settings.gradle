@@ -1,2 +1,5 @@
+rootProject.name = 'owl'
 include 'domain'
+include 'web'
+include 'api'
 

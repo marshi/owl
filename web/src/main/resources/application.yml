@@ -1,4 +1,7 @@
 server:
   port: 8001
 
-spring.thymeleaf.prefix: classpath:/templates/html/
+spring:
+  thymeleaf.prefix: classpath:/templates/html/
+  session.store-type:
+    - springframework.session.jdbc.JdbcOperationsSessionRepository

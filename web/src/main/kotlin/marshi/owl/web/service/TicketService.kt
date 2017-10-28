@@ -9,7 +9,7 @@ class TicketService(
         @Autowired private val ticketRepository: TicketRepository
 ) {
 
-    fun list(): List<> {
+    fun list(): List<String> {
         return listOf("aiueo", "aiue")
     }
 
