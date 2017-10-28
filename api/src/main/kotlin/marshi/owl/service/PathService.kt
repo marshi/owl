@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service
 class PathService(@Autowired val pathGraphRepository: PathGraphRepository) {
 
     fun create(prevTicketModel: TicketModel, nextTicketModel: TicketModel) {
-        val path = Path(prevTicketModel.convertTo(), nextTicketModel.convertTo())
+        val path = Path(prevTicketModel.convertToNode(), nextTicketModel.convertToNode())
         pathGraphRepository.save(path)
     }
 

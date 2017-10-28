@@ -2,7 +2,8 @@ package marshi.owl.entity
 
 import lombok.NoArgsConstructor
 import lombok.Setter
-import marshi.owl.datasource.graph.entity.Ticket
+import marshi.owl.datasource.graph.entity.TicketNode
+import marshi.owl.datasource.rdb.entity.Ticket
 
 /**
  * Created by a13178 on 2017/04/17.
@@ -18,22 +19,36 @@ class TicketModel(
         var nextStepTickets: Set<TicketModel>? = mutableSetOf()
 ){
 
-    fun convertTo(): Ticket {
-        val ticket = Ticket(
+    fun convertToNode(): TicketNode {
+        val ticket = TicketNode(
                 id,
-                nextStepTickets?.map { it.convertTo() }?.toSet(),
-                projectId,
-                title,
-                assigneeId,
-                content
+                nextStepTickets?.map { it.convertToNode() }?.toSet()
         )
+        return ticket
+    }
+
+    fun convertToRecord(): Ticket {
+        val ticket = Ticket()
+        ticket.id = id
+        ticket.projectId = projectId
+        ticket.title = title
+        ticket.assigneeId = assigneeId
+        ticket.content  = content
         return ticket
     }
 
     companion object {
         @JvmStatic
-        fun convertFrom(ticket: Ticket): TicketModel {
-            val ticketModel = TicketModel(
+        fun convertFromNode(ticketNode: TicketNode): TicketModel {
+            val ticketModel = TicketModel (
+                    ticketNode.id
+            )
+            return ticketModel
+        }
+
+        @JvmStatic
+        fun convertFromRecord(ticket: Ticket): TicketModel {
+            val ticketModel = TicketModel (
                     ticket.id,
                     ticket.title,
                     ticket.content,

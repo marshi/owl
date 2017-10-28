@@ -16,6 +16,7 @@ class TicketFacade(
         @Autowired val ticketService: TicketService
 ) {
 
+    @Transactional
     fun create(ticketModel: TicketModel) {
         ticketService.create(ticketModel)
     }
@@ -24,12 +25,16 @@ class TicketFacade(
         return ticketService.find(ticketId) ?: throw TicketNotFound("ticket not found")
     }
 
-    fun  nextStep(ticketId: Long, nextStepTicketModel: NextStepTicketModel) {
+    fun nextStep(ticketId: Long, nextStepTicketModel: NextStepTicketModel) {
         ticketService.linkPathToNextStep(ticketId, nextStepTicketModel)
     }
 
     fun delete(ticketId: Long) {
         ticketService.delete(ticketId)
+    }
+
+    fun list(): List<TicketModel> {
+        return ticketService.list()
     }
 
 }

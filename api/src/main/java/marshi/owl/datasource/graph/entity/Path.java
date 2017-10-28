@@ -15,22 +15,22 @@ public class Path {
     private Long id;
 
     @StartNode
-    private Ticket prevTicket;
+    private TicketNode prevTicketNode;
 
     @EndNode
-    private Ticket nextTicket;
+    private TicketNode nextTicketNode;
 
-    public Path(Ticket prevTicket, Ticket nextTicket) {
-        this.prevTicket = prevTicket;
-        this.nextTicket = nextTicket;
+    public Path(TicketNode prevTicketNode, TicketNode nextTicketNode) {
+        this.prevTicketNode = prevTicketNode;
+        this.nextTicketNode = nextTicketNode;
     }
 
-    public Ticket getPrevTicket() {
-        return prevTicket;
+    public TicketNode getPrevTicketNode() {
+        return prevTicketNode;
     }
 
-    public Ticket getNextTicket() {
-        return nextTicket;
+    public TicketNode getNextTicketNode() {
+        return nextTicketNode;
     }
 
 }
