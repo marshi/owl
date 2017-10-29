@@ -1,6 +1,7 @@
 package marshi.owl.controller
 
 import marshi.owl.TicketNotFound
+import marshi.owl.apiresponse.TicketListResponse
 import marshi.owl.entity.NextStepTicketModel
 import marshi.owl.domain.entity.Ticket
 import marshi.owl.facade.TicketFacade
@@ -34,10 +35,8 @@ class TicketController(
     }
 
     @RequestMapping(value = "/tickets", method = arrayOf(RequestMethod.GET))
-    fun list(): List<Ticket>? {
-        val list = ticketFacade.list()
-        Collections.shuffle(list);
-        return list
+    fun list(): TicketListResponse {
+        return ticketFacade.list()
     }
 
     @RequestMapping(value = "/tickets/{ticketId}", method = arrayOf(RequestMethod.GET))

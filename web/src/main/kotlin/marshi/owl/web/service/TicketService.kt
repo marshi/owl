@@ -10,9 +10,8 @@ class TicketService(
         @Autowired private val ticketRepository: TicketRepository
 ) {
 
-    fun list(): List<String> {
-        Ticket()
-        return listOf("aiueo", "aiue")
+    fun list(): List<Ticket> {
+        return ticketRepository.list()
     }
 
 }

@@ -1,5 +1,6 @@
 package marshi.owl.domain.entity
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import lombok.NoArgsConstructor
 import lombok.Setter
 
@@ -8,6 +9,7 @@ import lombok.Setter
  */
 @NoArgsConstructor
 @Setter
+@JsonIgnoreProperties(ignoreUnknown = true)
 class Ticket(
         var id: Long? = null,
         var title: String? = null,

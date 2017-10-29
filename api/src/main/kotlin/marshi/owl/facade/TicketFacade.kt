@@ -1,6 +1,7 @@
 package marshi.owl.facade
 
 import marshi.owl.TicketNotFound
+import marshi.owl.apiresponse.TicketListResponse
 import marshi.owl.entity.NextStepTicketModel
 import marshi.owl.domain.entity.Ticket
 import marshi.owl.service.TicketService
@@ -33,8 +34,9 @@ class TicketFacade(
         ticketService.delete(ticketId)
     }
 
-    fun list(): List<Ticket> {
-        return ticketService.list()
+    fun list(): TicketListResponse {
+        val list = ticketService.list()
+        return TicketListResponse(list, null)
     }
 
 }

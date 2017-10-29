@@ -39,7 +39,12 @@ subprojects {
 		compileOnly('org.projectlombok:lombok:1.16.18')
         compile("org.jetbrains.kotlin:kotlin-stdlib-jre8:${kotlinVersion}")
         compile("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
-	}
+        // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core
+        compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.9.2'
+        // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-annotations
+        compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.9.2'
+
+    }
 }
 
 project(":repository") {
@@ -68,6 +73,7 @@ project(":web") {
     apply plugin: 'org.springframework.boot'
 	dependencies {
 		compile project(':domain')
+        compile project(':api-response')
 		compile("org.springframework.boot:spring-boot-starter-aop:${springBootVersion}")
 		compile "org.springframework.boot:spring-boot-starter-actuator:${springBootVersion}"
 		compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}") {
@@ -79,7 +85,9 @@ project(":web") {
 		testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
 		compile("org.springframework.session:spring-session-core:${springBootVersion}")
 		compile("org.springframework.boot:spring-boot-starter-thymeleaf:${springBootVersion}")
-	}
+        // https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient
+        compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.3'
+    }
 }
 
 project(":api") {
@@ -87,6 +95,7 @@ project(":api") {
     apply plugin: 'org.springframework.boot'
 	dependencies {
         compile project(':repository')
+        compile project(':api-response')
         compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}") {
             exclude group: "org.hibernate", module: "hibernate-validator"
         }
@@ -99,6 +108,11 @@ project(":api") {
     }
 }
 
+project(":api-response") {
+    dependencies {
+        compile project(':domain')
+    }
+}
 
 project(":domain") {
 }

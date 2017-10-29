@@ -12,8 +12,8 @@ class TicketListFacade(
 
     fun list(): ModelAndView {
         val modelAndView = ModelAndView("test")
-        val list = ticketService.list()
-        modelAndView.addObject("list", list)
+        val tickets = ticketService.list()
+        modelAndView.addObject("tickets", tickets)
         return modelAndView
     }
 
