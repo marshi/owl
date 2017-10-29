@@ -1,8 +1,7 @@
 package marshi.owl.service
 
-import marshi.owl.datasource.graph.entity.Path
-import marshi.owl.datasource.graph.repository.PathGraphRepository
-import marshi.owl.entity.TicketModel
+import marshi.owl.data.graph.repository.PathGraphRepository
+import marshi.owl.domain.entity.Ticket
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
@@ -12,9 +11,8 @@ import org.springframework.stereotype.Service
 @Service
 class PathService(@Autowired val pathGraphRepository: PathGraphRepository) {
 
-    fun create(prevTicketModel: TicketModel, nextTicketModel: TicketModel) {
-        val path = Path(prevTicketModel.convertToNode(), nextTicketModel.convertToNode())
-        pathGraphRepository.save(path)
+    fun create(prevTicket: Ticket, nextTicket: Ticket) {
+        pathGraphRepository.save(prevTicket, nextTicket)
     }
 
 }

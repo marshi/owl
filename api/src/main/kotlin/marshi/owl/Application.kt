@@ -11,7 +11,7 @@ import org.springframework.data.neo4j.repository.config.EnableNeo4jRepositories
 import org.springframework.transaction.annotation.EnableTransactionManagement
 
 @SpringBootApplication
-@EnableNeo4jRepositories(basePackages = arrayOf("marshi.owl.datasource.graph"))
+@EnableNeo4jRepositories(basePackages = arrayOf("marshi.owl.data.graph"))
 @EnableAutoConfiguration(exclude = arrayOf(
         DataSourceAutoConfiguration::class
 ))

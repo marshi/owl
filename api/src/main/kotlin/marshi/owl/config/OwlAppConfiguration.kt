@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Configuration
  * Created by a13178 on 2017/04/15.
  */
 @Configuration
-@MapperScan("marshi.owl.datasource")
+@MapperScan("marshi.owl.data")
 @EnableConfigurationProperties(Neo4jProperties::class)
 class OwlAppConfiguration {
 
@@ -33,7 +33,7 @@ class OwlAppConfiguration {
     fun sessionFactory(configuration: org.neo4j.ogm.config.Configuration,
                        applicationContext: ApplicationContext,
                        eventListeners: ObjectProvider<List<EventListener>> ): SessionFactory {
-        val sessionFactory: SessionFactory  = SessionFactory(configuration, "marshi.owl.datasource.graph")
+        val sessionFactory: SessionFactory  = SessionFactory(configuration, "marshi.owl.data.graph")
 //        val providedEventListeners: List<EventListener>  = eventListeners.ifAvailable
 //        for (eventListener: EventListener in providedEventListeners) {
 //            sessionFactory.register(eventListener)

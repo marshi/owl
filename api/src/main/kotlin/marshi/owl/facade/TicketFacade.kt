@@ -2,7 +2,7 @@ package marshi.owl.facade
 
 import marshi.owl.TicketNotFound
 import marshi.owl.entity.NextStepTicketModel
-import marshi.owl.entity.TicketModel
+import marshi.owl.domain.entity.Ticket
 import marshi.owl.service.TicketService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
@@ -17,11 +17,11 @@ class TicketFacade(
 ) {
 
     @Transactional
-    fun create(ticketModel: TicketModel) {
-        ticketService.create(ticketModel)
+    fun create(ticket: Ticket) {
+        ticketService.create(ticket)
     }
 
-    fun find(ticketId: Long): TicketModel {
+    fun find(ticketId: Long): Ticket {
         return ticketService.find(ticketId) ?: throw TicketNotFound("ticket not found")
     }
 
@@ -33,7 +33,7 @@ class TicketFacade(
         ticketService.delete(ticketId)
     }
 
-    fun list(): List<TicketModel> {
+    fun list(): List<Ticket> {
         return ticketService.list()
     }
 

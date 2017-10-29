@@ -6,8 +6,8 @@ import org.springframework.beans.factory.support.DefaultListableBeanFactory
 import org.springframework.context.ApplicationContextInitializer
 import org.springframework.context.ConfigurableApplicationContext
 import org.springframework.jdbc.datasource.DataSourceTransactionManager
-import marshi.owl.datasource.rdb.DbType
-import marshi.owl.datasource.rdb.RoutingDataSource
+import marshi.owl.data.rdb.DbType
+import marshi.owl.data.rdb.RoutingDataSource
 import org.springframework.boot.jdbc.DataSourceBuilder
 import org.springframework.core.env.get
 import java.text.MessageFormat

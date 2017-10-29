@@ -1,15 +1,12 @@
 package marshi.owl.service
 
-import marshi.owl.datasource.graph.entity.Path
-import marshi.owl.datasource.graph.entity.TicketNode
-import marshi.owl.datasource.graph.repository.PathGraphRepository
-import marshi.owl.entity.TicketModel
+import marshi.owl.data.graph.repository.PathGraphRepository
+import marshi.owl.data.graph.repository.TicketGraphRepository
+import marshi.owl.data.graph.repository.TicketRepository
+import marshi.owl.domain.entity.Ticket
+import marshi.owl.entity.NextStepTicketModel
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import marshi.owl.datasource.graph.repository.TicketGraphRepository
-import marshi.owl.datasource.rdb.repository.SequenceRepository
-import marshi.owl.datasource.rdb.repository.TicketRepository
-import marshi.owl.entity.NextStepTicketModel
 
 /**
  * Created by a13178 on 2017/04/15.
@@ -21,36 +18,35 @@ class TicketService(
         @Autowired val ticketRepository: TicketRepository
 ) {
 
-    fun create(ticketModel: TicketModel) {
-        ticketRepository.create(ticketModel)
+    fun create(ticket: Ticket) {
+        ticketRepository.create(ticket)
     }
 
 //    fun create(ticketModel: TicketModel) {
 //        ticketGraphRepository.save(ticketModel.convertToNode())
 //    }
 
-    fun find(ticketId: Long): TicketModel? {
-        val ticketNode: TicketNode = ticketGraphRepository.findById(
+    fun find(ticketId: Long): Ticket? {
+        return ticketGraphRepository.findById(
                 ticketId,
                 1
-        ).orElse(null) ?: return null
-        return TicketModel.convertFromNode(ticketNode)
+        ).orElse(null)
     }
 
     fun linkPathToNextStep(ticketId: Long, nextStepTicketModel: NextStepTicketModel) {
-        val ticketModel = find(ticketId)
-        ticketModel ?: return
+        val ticket = find(ticketId)
+        ticket ?: return
         val nextTicketModel = find(nextStepTicketModel.id!!)
         nextTicketModel ?: return
-        ticketModel.nextStepTickets = ticketModel.nextStepTickets?.plus(nextTicketModel)
-        pathGraphRepository.save(Path(ticketModel.convertToNode(), ticketModel.convertToNode()))
+        ticket.nextStepTickets = ticket.nextStepTickets?.plus(nextTicketModel)
+        pathGraphRepository.save(ticket, nextTicketModel)
     }
 
     fun  delete(ticketId: Long) {
         ticketGraphRepository.deleteById(ticketId)
     }
 
-    fun list(): List<TicketModel> {
+    fun list(): List<Ticket> {
         return ticketRepository.list()
     }
 

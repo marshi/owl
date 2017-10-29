@@ -1,9 +1,7 @@
 package marshi.owl.facade
 
 import marshi.owl.TicketNotFound
-import marshi.owl.datasource.graph.repository.TicketGraphRepository
 import marshi.owl.entity.RequestPath
-import marshi.owl.entity.TicketModel
 import marshi.owl.service.PathService
 import marshi.owl.service.TicketService
 import org.springframework.beans.factory.annotation.Autowired
