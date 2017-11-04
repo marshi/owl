@@ -33,6 +33,10 @@
             <generatedKey column="id" sqlStatement="MySql"/>
         </table>
 
+        <table tableName="project" domainObjectName="Project" modelType="flat">
+            <generatedKey column="id" sqlStatement="MySql"/>
+        </table>
+
     </context>
 
 </generatorConfiguration>
