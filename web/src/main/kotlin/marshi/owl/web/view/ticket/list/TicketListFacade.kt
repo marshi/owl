@@ -10,9 +10,11 @@ class TicketListFacade(
         @Autowired private val ticketService: TicketService
 ) {
 
-    fun list(): ModelAndView {
+    fun list(
+        projectId: Long
+    ): ModelAndView {
         val modelAndView = ModelAndView("ticket_list")
-        val tickets = ticketService.list()
+        val tickets = ticketService.list(projectId)
         modelAndView.addObject("tickets", tickets)
         return modelAndView
     }

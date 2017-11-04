@@ -15,30 +15,41 @@ import javax.servlet.http.HttpServletResponse
  */
 @RestController
 @CrossOrigin(origins = arrayOf("http://localhost:8888"))
+@RequestMapping(value = "/projects/{projectId}")
 class TicketController(
-        @Autowired val ticketFacade: TicketFacade
+    @Autowired val ticketFacade: TicketFacade
 ) {
 
     @RequestMapping(value = "/tickets", method = arrayOf(RequestMethod.POST))
-    fun create(@RequestBody ticket: Ticket) {
+    fun create(
+        @PathVariable("projectId") projectId: Long,
+        @RequestBody ticket: Ticket
+    ) {
         ticketFacade.create(ticket)
     }
 
     @RequestMapping(value = "/tickets/{ticketId}", method = arrayOf(RequestMethod.PATCH))
     fun depend(
-            @PathVariable("ticketId") ticketId: Long,
-            @RequestBody nextStepTicketModel: NextStepTicketModel
+        @PathVariable("projectId") projectId: Long,
+        @PathVariable("ticketId") ticketId: Long,
+        @RequestBody nextStepTicketModel: NextStepTicketModel
     ) {
         ticketFacade.nextStep(ticketId, nextStepTicketModel)
     }
 
     @RequestMapping(value = "/tickets", method = arrayOf(RequestMethod.GET))
-    fun list(): TicketListResponse {
+    fun list(
+        @PathVariable("projectId") projectId: Long
+    ): TicketListResponse {
         return ticketFacade.list()
     }
 
     @RequestMapping(value = "/tickets/{ticketId}", method = arrayOf(RequestMethod.GET))
-    fun get(response: HttpServletResponse, @PathVariable ticketId: Long): Ticket? {
+    fun get(
+        @PathVariable("projectId") projectId: Long,
+        @PathVariable ticketId: Long,
+        response: HttpServletResponse
+    ): Ticket? {
         return try {
             ticketFacade.find(ticketId)
         } catch (e: TicketNotFound) {
@@ -48,7 +59,10 @@ class TicketController(
     }
 
     @RequestMapping(value = "/tickets/{ticketId}", method = arrayOf(RequestMethod.DELETE))
-    fun delete(response: HttpServletResponse, @PathVariable ticketId: Long) {
+    fun delete(
+        @PathVariable("projectId") projectId: Long,
+        @PathVariable ticketId: Long,
+        response: HttpServletResponse) {
         return ticketFacade.delete(ticketId)
     }
 
