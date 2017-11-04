@@ -79,7 +79,6 @@ project(":web") {
 		compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}") {
 			exclude group: "org.hibernate", module: "hibernate-validator"
 		}
-		compile("org.springframework.boot:spring-boot-starter-security:${springBootVersion}")
 		compile("org.springframework.boot:spring-boot-starter-validation:${springBootVersion}")
 		runtime("org.springframework.boot:spring-boot-devtools:${springBootVersion}")
 		testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")

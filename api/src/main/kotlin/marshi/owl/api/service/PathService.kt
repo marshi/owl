@@ -1,4 +1,4 @@
-package marshi.owl.service
+package marshi.owl.api.service
 
 import marshi.owl.data.graph.repository.PathGraphRepository
 import marshi.owl.domain.entity.Ticket

@@ -1,8 +1,5 @@
-package marshi.owl
+package marshi.owl.api.exception
 
-/**
- * Created by a13178 on 2017/04/22.
- */
 class TicketNotFound(message: String?) : Exception(message) {
 
 }

@@ -1,4 +1,4 @@
-package marshi.owl.config
+package marshi.owl.api.config
 
 import org.mybatis.spring.SqlSessionFactoryBean
 import org.springframework.beans.factory.DisposableBean

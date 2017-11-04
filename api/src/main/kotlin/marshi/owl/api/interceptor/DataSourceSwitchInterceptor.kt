@@ -1,4 +1,4 @@
-package marshi.owl.interceptor
+package marshi.owl.api.interceptor
 
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter
 import marshi.owl.data.rdb.DbType

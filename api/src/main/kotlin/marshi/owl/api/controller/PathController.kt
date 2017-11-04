@@ -1,8 +1,8 @@
-package marshi.owl.controller
+package marshi.owl.api.controller
 
-import marshi.owl.TicketNotFound
-import marshi.owl.entity.RequestPath
-import marshi.owl.facade.PathFacade
+import marshi.owl.api.exception.TicketNotFound
+import marshi.owl.api.entity.RequestPath
+import marshi.owl.api.facade.PathFacade
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.RequestBody

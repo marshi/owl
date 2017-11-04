@@ -1,4 +1,4 @@
-package marshi.owl.config
+package marshi.owl.api.config
 
 import org.mybatis.spring.annotation.MapperScan
 import org.neo4j.ogm.session.SessionFactory

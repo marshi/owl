@@ -1,11 +1,14 @@
-package marshi.owl.data.graph.repository;
+package marshi.owl.data.repository;
 
+import lombok.NoArgsConstructor;
 import lombok.val;
 import marshi.owl.data.rdb.entity.TicketExample;
 import marshi.owl.data.rdb.mapper.TicketMapper;
+import marshi.owl.domain.entity.Project;
 import marshi.owl.domain.entity.Ticket;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.yaml.snakeyaml.events.Event;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -31,7 +34,6 @@ public class TicketRepository {
         val result = ticketMapper.selectByExample(new TicketExample());
         return result.stream().map(this::convertFrom).collect(Collectors.toList());
     }
-
 
     private static marshi.owl.data.rdb.entity.Ticket convert(marshi.owl.domain.entity.Ticket ticket) {
         marshi.owl.data.rdb.entity.Ticket ticketRecord = new marshi.owl.data.rdb.entity.Ticket();
