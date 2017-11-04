@@ -28,7 +28,7 @@ class TicketRegisterController(
         @ModelAttribute("ticket") ticketForm: TicketForm
     ): ModelAndView {
         ticketRepository.create(ticketForm.convertTo())
-        return ModelAndView("/ticket_register")
+        return ModelAndView("redirect:/ticket/list")
     }
 
 }
