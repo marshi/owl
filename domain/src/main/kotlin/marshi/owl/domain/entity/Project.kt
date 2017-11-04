@@ -4,6 +4,6 @@ import lombok.Getter
 
 @Getter
 class Project(
-    val id: Long,
-    val name: String
+    val id: Int? = null,
+    val name: String? = null
 )
