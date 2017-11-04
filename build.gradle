@@ -72,7 +72,6 @@ project(":web") {
     apply plugin: 'kotlin-spring'
     apply plugin: 'org.springframework.boot'
 	dependencies {
-		compile project(':domain')
         compile project(':api-response')
 		compile("org.springframework.boot:spring-boot-starter-aop:${springBootVersion}")
 		compile "org.springframework.boot:spring-boot-starter-actuator:${springBootVersion}"

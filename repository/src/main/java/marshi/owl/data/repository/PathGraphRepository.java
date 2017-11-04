@@ -1,4 +1,4 @@
-package marshi.owl.data.graph.repository;
+package marshi.owl.data.repository;
 
 import marshi.owl.data.graph.entity.Path;
 import marshi.owl.domain.entity.Ticket;

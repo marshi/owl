@@ -1,4 +1,4 @@
-package marshi.owl.data.graph.repository;
+package marshi.owl.data.repository;
 
 import marshi.owl.data.graph.entity.TicketNode;
 import org.springframework.data.neo4j.repository.Neo4jRepository;

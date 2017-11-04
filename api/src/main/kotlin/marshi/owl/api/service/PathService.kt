@@ -1,6 +1,6 @@
 package marshi.owl.api.service
 
-import marshi.owl.data.graph.repository.PathGraphRepository
+import marshi.owl.data.repository.PathGraphRepository
 import marshi.owl.domain.entity.Ticket
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service

@@ -1,7 +1,7 @@
 package marshi.owl.api.service
 
-import marshi.owl.data.graph.repository.PathGraphRepository
-import marshi.owl.data.graph.repository.TicketGraphRepository
+import marshi.owl.data.repository.PathGraphRepository
+import marshi.owl.data.repository.TicketGraphRepository
 import marshi.owl.data.repository.TicketRepository
 import marshi.owl.domain.entity.Ticket
 import marshi.owl.api.entity.NextStepTicketModel
@@ -13,9 +13,9 @@ import org.springframework.stereotype.Service
  */
 @Service
 class TicketService(
-        @Autowired val ticketGraphRepository: TicketGraphRepository,
-        @Autowired val pathGraphRepository: PathGraphRepository,
-        @Autowired val ticketRepository: TicketRepository
+    @Autowired val ticketGraphRepository: TicketGraphRepository,
+    @Autowired val pathGraphRepository: PathGraphRepository,
+    @Autowired val ticketRepository: TicketRepository
 ) {
 
     fun create(ticket: Ticket) {

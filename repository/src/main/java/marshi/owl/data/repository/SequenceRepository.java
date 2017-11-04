@@ -1,4 +1,4 @@
-package marshi.owl.data.rdb.repository;
+package marshi.owl.data.repository;
 
 import marshi.owl.data.rdb.mapper.SequenceMapper;
 import org.springframework.beans.factory.annotation.Autowired;
