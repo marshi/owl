@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository
 
 @Repository
 class ProjectRepository(
-    @Autowired private val httpApiTemplate: HttpApiTemplate
 ) {
 
     fun list(): List<Project> {

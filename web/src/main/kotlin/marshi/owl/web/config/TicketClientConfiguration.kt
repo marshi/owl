@@ -1,9 +1,9 @@
 package marshi.owl.web.config
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.databind.PropertyNamingStrategy
 import marshi.owl.web.repository.HttpApiTemplate
 import org.apache.http.impl.client.HttpClientBuilder
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
@@ -11,18 +11,18 @@ import org.springframework.context.annotation.Configuration
 class TicketClientConfiguration {
 
     @Bean
-    fun httpApiTemplate(): HttpApiTemplate {
+    fun httpApiTemplate(
+        @Autowired mapper: ObjectMapper
+    ): HttpApiTemplate {
         return HttpApiTemplate(
-                mapper = objectMapper(),
-                httpClient = HttpClientBuilder
-                        .create()
-                        .build()
+            mapper = mapper,
+            httpClient = HttpClientBuilder
+                .create()
+                .build(),
+            scheme = "http",
+            host = "localhost",
+            port = 8000
         )
-    }
-
-    @Bean
-    fun objectMapper(): ObjectMapper {
-        return ObjectMapper().setPropertyNamingStrategy(PropertyNamingStrategy.SnakeCaseStrategy())
     }
 
 }

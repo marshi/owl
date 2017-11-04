@@ -18,13 +18,13 @@ import java.net.URI
 
 class HttpApiTemplate(
     private val httpClient: HttpClient,
-    private val mapper: ObjectMapper
+    private val mapper: ObjectMapper,
+    private val scheme: String,
+    private val host: String,
+    private val port: Int
 ) {
 
    fun resource(
-       scheme: String,
-       host: String,
-       port: Int,
        path: String
    ): Resource{
       val uri = URIBuilder()
