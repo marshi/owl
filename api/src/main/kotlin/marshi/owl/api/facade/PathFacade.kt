@@ -1,9 +1,9 @@
-package marshi.owl.facade
+package marshi.owl.api.facade
 
-import marshi.owl.TicketNotFound
-import marshi.owl.entity.RequestPath
-import marshi.owl.service.PathService
-import marshi.owl.service.TicketService
+import marshi.owl.api.exception.TicketNotFound
+import marshi.owl.api.entity.RequestPath
+import marshi.owl.api.service.PathService
+import marshi.owl.api.service.TicketService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 

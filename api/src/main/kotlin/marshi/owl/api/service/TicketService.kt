@@ -1,10 +1,10 @@
-package marshi.owl.service
+package marshi.owl.api.service
 
 import marshi.owl.data.graph.repository.PathGraphRepository
 import marshi.owl.data.graph.repository.TicketGraphRepository
-import marshi.owl.data.graph.repository.TicketRepository
+import marshi.owl.data.repository.TicketRepository
 import marshi.owl.domain.entity.Ticket
-import marshi.owl.entity.NextStepTicketModel
+import marshi.owl.api.entity.NextStepTicketModel
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 

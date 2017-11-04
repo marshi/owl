@@ -11,7 +11,7 @@ class TicketListController(
         @Autowired private val ticketFacade: TicketListFacade
 ) {
 
-    @RequestMapping(value = "/tickets", method = arrayOf(RequestMethod.GET))
+    @RequestMapping(value = "/ticket/list", method = arrayOf(RequestMethod.GET))
     fun test(): ModelAndView {
         return ticketFacade.list()
     }

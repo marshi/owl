@@ -1,14 +1,13 @@
-package marshi.owl.controller
+package marshi.owl.api.controller
 
-import marshi.owl.TicketNotFound
+import marshi.owl.api.exception.TicketNotFound
 import marshi.owl.apiresponse.TicketListResponse
-import marshi.owl.entity.NextStepTicketModel
+import marshi.owl.api.entity.NextStepTicketModel
 import marshi.owl.domain.entity.Ticket
-import marshi.owl.facade.TicketFacade
+import marshi.owl.api.facade.TicketFacade
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
-import java.util.*
 import javax.servlet.http.HttpServletResponse
 
 /**
@@ -23,7 +22,6 @@ class TicketController(
     @RequestMapping(value = "/tickets", method = arrayOf(RequestMethod.POST))
     fun create(@RequestBody ticket: Ticket) {
         ticketFacade.create(ticket)
-        println("aiueo")
     }
 
     @RequestMapping(value = "/tickets/{ticketId}", method = arrayOf(RequestMethod.PATCH))

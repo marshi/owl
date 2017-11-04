@@ -1,4 +1,4 @@
-package marshi.owl.entity
+package marshi.owl.api.entity
 
 import lombok.NoArgsConstructor
 import lombok.Setter

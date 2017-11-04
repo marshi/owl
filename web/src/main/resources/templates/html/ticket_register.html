@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<form method="post" action="/ticket/register" th:object="${ticket}">
+  <label>タイトル
+    <input type="text" th:field="*{title}">
+  </label>
+  <label>内容
+    <input type="text" th:field="*{content}">
+  </label>
+  <label>プロジェクト
+    <select th:field="*{projectId}">
+      <option th:each="project : ${projects}"
+              th:text="${project.name}"
+              th:value="${project.id}"></option>
+    </select>
+  </label>
+  <input type="submit" value="登録">
+</form>
+</body>
+</html>

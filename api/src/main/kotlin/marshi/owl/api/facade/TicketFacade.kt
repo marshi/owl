@@ -1,10 +1,10 @@
-package marshi.owl.facade
+package marshi.owl.api.facade
 
-import marshi.owl.TicketNotFound
+import marshi.owl.api.exception.TicketNotFound
 import marshi.owl.apiresponse.TicketListResponse
-import marshi.owl.entity.NextStepTicketModel
+import marshi.owl.api.entity.NextStepTicketModel
 import marshi.owl.domain.entity.Ticket
-import marshi.owl.service.TicketService
+import marshi.owl.api.service.TicketService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
