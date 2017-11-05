@@ -1,7 +1,7 @@
 package marshi.owl.api.controller
 
 import marshi.owl.api.exception.TicketNotFound
-import marshi.owl.apiresponse.TicketListResponse
+import marshi.owl.apiresponse.ticket.TicketListResponse
 import marshi.owl.api.entity.NextStepTicketModel
 import marshi.owl.domain.entity.Ticket
 import marshi.owl.api.facade.TicketFacade

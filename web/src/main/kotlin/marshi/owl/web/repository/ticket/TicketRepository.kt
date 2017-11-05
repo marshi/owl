@@ -1,6 +1,6 @@
 package marshi.owl.web.repository.ticket
 
-import marshi.owl.apiresponse.TicketListResponse
+import marshi.owl.apiresponse.ticket.TicketListResponse
 import marshi.owl.domain.entity.Ticket
 import marshi.owl.web.repository.HttpApiTemplate
 import java.text.MessageFormat

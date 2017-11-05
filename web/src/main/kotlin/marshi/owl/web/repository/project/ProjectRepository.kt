@@ -1,6 +1,6 @@
 package marshi.owl.web.repository.project
 
-import marshi.owl.apiresponse.ProjectListResponse
+import marshi.owl.apiresponse.project.ProjectListResponse
 import marshi.owl.domain.entity.Project
 import marshi.owl.web.repository.HttpApiTemplate
 import org.springframework.stereotype.Repository

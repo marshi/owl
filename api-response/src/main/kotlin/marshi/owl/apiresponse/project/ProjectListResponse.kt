@@ -1,5 +1,6 @@
-package marshi.owl.apiresponse
+package marshi.owl.apiresponse.project
 
+import marshi.owl.apiresponse.DataListResponse
 import marshi.owl.domain.entity.Project
 
 class ProjectListResponse(
