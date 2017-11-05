@@ -1,6 +1,6 @@
-package marshi.owl.apiresponse
+package marshi.owl.apiresponse.ticket
 
-import lombok.NoArgsConstructor
+import marshi.owl.apiresponse.DataListResponse
 import marshi.owl.domain.entity.Ticket
 
 class TicketListResponse(val data: List<Ticket>, val summary: Void?)
