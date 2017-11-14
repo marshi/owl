@@ -42,4 +42,15 @@ public class TicketNode {
        return new TicketNode();
     }
 
+    public Ticket convert() {
+        return new Ticket(
+                this.getId(),
+                null,
+                null,
+                null,
+                null,
+                null
+        );
+    }
+
 }

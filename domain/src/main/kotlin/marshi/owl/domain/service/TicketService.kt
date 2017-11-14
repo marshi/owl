@@ -1,10 +1,9 @@
-package marshi.owl.api.service
+package marshi.owl.domain.service
 
-import marshi.owl.data.repository.PathGraphRepository
-import marshi.owl.data.repository.TicketGraphRepository
-import marshi.owl.data.repository.TicketRepository
 import marshi.owl.domain.entity.Ticket
-import marshi.owl.api.entity.NextStepTicketModel
+import marshi.owl.domain.repository.PathGraphRepositoryInterface
+import marshi.owl.domain.repository.TicketGraphRepositoryInterface
+import marshi.owl.domain.repository.TicketRepositoryInterface
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
@@ -13,18 +12,14 @@ import org.springframework.stereotype.Service
  */
 @Service
 class TicketService(
-    @Autowired val ticketGraphRepository: TicketGraphRepository,
-    @Autowired val pathGraphRepository: PathGraphRepository,
-    @Autowired val ticketRepository: TicketRepository
+    @Autowired private val ticketGraphRepository: TicketGraphRepositoryInterface,
+    @Autowired private val pathGraphRepository: PathGraphRepositoryInterface,
+    @Autowired private val ticketRepository: TicketRepositoryInterface
 ) {
 
     fun create(ticket: Ticket) {
         ticketRepository.create(ticket)
     }
-
-//    fun create(ticketModel: TicketModel) {
-//        ticketGraphRepository.save(ticketModel.convertToNode())
-//    }
 
     fun find(ticketId: Long): Ticket? {
         return ticketGraphRepository.findById(
@@ -33,10 +28,10 @@ class TicketService(
         ).orElse(null)
     }
 
-    fun linkPathToNextStep(ticketId: Long, nextStepTicketModel: NextStepTicketModel) {
+    fun linkPathToNextStep(ticketId: Long, nextTicket: Ticket) {
         val ticket = find(ticketId)
         ticket ?: return
-        val nextTicketModel = find(nextStepTicketModel.id!!)
+        val nextTicketModel = find(nextTicket.id!!)
         nextTicketModel ?: return
         ticket.nextStepTickets = ticket.nextStepTickets?.plus(nextTicketModel)
         pathGraphRepository.save(ticket, nextTicketModel)

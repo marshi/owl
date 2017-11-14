@@ -29,11 +29,11 @@
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
-        <table tableName="ticket" domainObjectName="Ticket" modelType="flat">
+        <table tableName="ticket" domainObjectName="TicketRecord" modelType="flat">
             <generatedKey column="id" sqlStatement="MySql"/>
         </table>
 
-        <table tableName="project" domainObjectName="Project" modelType="flat">
+        <table tableName="project" domainObjectName="ProjectRecord" modelType="flat">
             <generatedKey column="id" sqlStatement="MySql"/>
         </table>
 

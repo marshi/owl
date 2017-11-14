@@ -1,14 +1,14 @@
 package marshi.owl.data.repository;
 
-import lombok.NoArgsConstructor;
 import lombok.val;
-import marshi.owl.data.rdb.entity.TicketExample;
-import marshi.owl.data.rdb.mapper.TicketMapper;
-import marshi.owl.domain.entity.Project;
+import marshi.owl.data.rdb.entity.TicketRecord;
+import marshi.owl.data.rdb.entity.TicketRecordExample;
+import marshi.owl.data.rdb.mapper.TicketRecordMapper;
 import marshi.owl.domain.entity.Ticket;
+import marshi.owl.domain.repository.TicketRepositoryInterface;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.yaml.snakeyaml.events.Event;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,26 +17,29 @@ import java.util.stream.Collectors;
  * Created by a13178 on 2017/04/15.
  */
 @Repository
-public class TicketRepository {
+public class TicketRepository implements TicketRepositoryInterface {
 
-    private final TicketMapper ticketMapper;
+    private final TicketRecordMapper ticketMapper;
 
     @Autowired
-    public TicketRepository(TicketMapper ticketMapper) {
+    public TicketRepository(TicketRecordMapper ticketMapper) {
         this.ticketMapper = ticketMapper;
     }
 
-    public void create(marshi.owl.domain.entity.Ticket ticket) {
+    @Override
+    public void create(@NotNull Ticket ticket) {
         ticketMapper.insertSelective(convert(ticket));
     }
 
+    @NotNull
+    @Override
     public List<Ticket> list()  {
-        val result = ticketMapper.selectByExample(new TicketExample());
+        val result = ticketMapper.selectByExample(new TicketRecordExample());
         return result.stream().map(this::convertFrom).collect(Collectors.toList());
     }
 
-    private static marshi.owl.data.rdb.entity.Ticket convert(marshi.owl.domain.entity.Ticket ticket) {
-        marshi.owl.data.rdb.entity.Ticket ticketRecord = new marshi.owl.data.rdb.entity.Ticket();
+    private static TicketRecord convert(Ticket ticket) {
+        TicketRecord ticketRecord = new TicketRecord();
         ticketRecord.setId(ticket.getId());
         ticketRecord.setAssigneeId(ticket.getAssigneeId());
         ticketRecord.setContent(ticket.getContent());
@@ -45,7 +48,7 @@ public class TicketRepository {
         return ticketRecord;
     }
 
-    private Ticket convertFrom(marshi.owl.data.rdb.entity.Ticket t) {
+    private Ticket convertFrom(TicketRecord t) {
         return new Ticket(
                 t.getId(),
                 t.getTitle(),

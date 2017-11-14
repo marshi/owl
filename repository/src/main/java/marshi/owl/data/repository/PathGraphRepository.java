@@ -1,12 +1,15 @@
 package marshi.owl.data.repository;
 
-import marshi.owl.data.graph.entity.Path;
+import marshi.owl.data.graph.entity.PathData;
+import marshi.owl.domain.entity.Path;
 import marshi.owl.domain.entity.Ticket;
+import marshi.owl.domain.repository.PathGraphRepositoryInterface;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class PathGraphRepository {
+public class PathGraphRepository implements PathGraphRepositoryInterface {
 
 	private final PathGraphRawRepository rawRepository;
 
@@ -15,8 +18,11 @@ public class PathGraphRepository {
 		this.rawRepository = rawRepository;
 	}
 
-	public Path save(Ticket prev, Ticket next) {
-		return rawRepository.save(Path.convertFrom(prev, next));
+	@NotNull
+	@Override
+	public Path save(@NotNull Ticket prev, @NotNull Ticket next) {
+		PathData pathData = rawRepository.save(PathData.convertFrom(prev, next));
+		return pathData.convert();
 	}
 
 }

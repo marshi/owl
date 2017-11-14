@@ -2,6 +2,7 @@ buildscript {
 	ext {
 		kotlinVersion = '1.1.51'
 		springBootVersion = '2.0.0.M5'
+		springVersion = '5.0.0.RELEASE'
 	}
 	repositories {
 		mavenCentral()
@@ -113,4 +114,8 @@ project(":api-response") {
 }
 
 project(":domain") {
+    dependencies {
+		compile("org.springframework:spring-beans:${springVersion}")
+		compile("org.springframework:spring-context:${springVersion}")
+	}
 }
