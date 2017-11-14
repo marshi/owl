@@ -2,6 +2,7 @@ package marshi.owl.api.entity
 
 import lombok.NoArgsConstructor
 import lombok.Setter
+import marshi.owl.domain.entity.Ticket
 
 /**
  * Created by a13178 on 2017/04/21.
@@ -9,5 +10,9 @@ import lombok.Setter
 @NoArgsConstructor
 @Setter
 class NextStepTicketModel(
-        var id: Long? = null
-)
+    private var id: Long? = null
+) {
+    fun convert(): Ticket {
+        return Ticket(this.id)
+    }
+}

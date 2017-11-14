@@ -2,13 +2,15 @@ package marshi.owl.data.repository;
 
 import marshi.owl.data.graph.entity.TicketNode;
 import marshi.owl.domain.entity.Ticket;
+import marshi.owl.domain.repository.TicketGraphRepositoryInterface;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
-public class TicketGraphRepository {
+public class TicketGraphRepository implements TicketGraphRepositoryInterface {
 
 	private final TicketGraphRawRepository rawRepository;
 
@@ -17,12 +19,14 @@ public class TicketGraphRepository {
 		this.rawRepository = rawRepository;
 	}
 
-	public Optional<Ticket> findById(Long id, int depth) {
+	@Override
+	public Optional<Ticket> findById(long id, int depth) {
 		Optional<TicketNode> node = rawRepository.findById(id, depth);
 		return node.flatMap(n -> Optional.of(convert(n)));
 	}
 
-	public void deleteById(Long id) {
+	@Override
+	public void deleteById(long id) {
 		rawRepository.deleteById(id);
 	}
 

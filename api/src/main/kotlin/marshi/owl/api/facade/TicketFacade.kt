@@ -1,13 +1,13 @@
 package marshi.owl.api.facade
 
-import marshi.owl.api.exception.TicketNotFound
+import marshi.owl.domain.exception.TicketNotFound
 import marshi.owl.apiresponse.ticket.TicketListResponse
-import marshi.owl.api.entity.NextStepTicketModel
 import marshi.owl.domain.entity.Ticket
-import marshi.owl.api.service.TicketService
+import marshi.owl.domain.service.TicketService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import java.util.*
 
 /**
  * Created by a13178 on 2017/04/15.
@@ -23,12 +23,12 @@ class TicketFacade(
     }
 
     fun find(ticketId: Long): Ticket {
-        return ticketService.find(ticketId) ?: throw TicketNotFound("ticket not found")
+        return ticketService.findFromGraph(ticketId)
     }
 
-    fun nextStep(ticketId: Long, nextStepTicketModel: NextStepTicketModel) {
-        ticketService.linkPathToNextStep(ticketId, nextStepTicketModel)
-    }
+//    fun nextStep(projectId: Long, ticketId: Long, nextTicket: NextStepTicketModel) {
+//        ticketService.linkPathToNextStep(projectId, ticketId, nextTicket.convert())
+//    }
 
     fun delete(ticketId: Long) {
         ticketService.delete(ticketId)
