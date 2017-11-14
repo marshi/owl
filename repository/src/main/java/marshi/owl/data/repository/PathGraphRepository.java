@@ -8,6 +8,9 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+import java.util.Optional;
+
 @Repository
 public class PathGraphRepository implements PathGraphRepositoryInterface {
 
@@ -20,9 +23,15 @@ public class PathGraphRepository implements PathGraphRepositoryInterface {
 
 	@NotNull
 	@Override
-	public Path save(@NotNull Ticket prev, @NotNull Ticket next) {
-		PathData pathData = rawRepository.save(PathData.convertFrom(prev, next));
+	public Path save(long projectId, @NotNull Ticket prev, @NotNull Ticket next) {
+		PathData pathData = rawRepository.save(PathData.convertFrom(projectId, prev, next));
 		return pathData.convert();
 	}
 
+	@NotNull
+	@Override
+	public Optional<Path> findBy(long prevTicketId, long nextTicketId) {
+		PathData pathData = rawRepository.findByTicketIds(prevTicketId, nextTicketId);
+		return Optional.ofNullable(pathData).map(PathData::convert);
+	}
 }

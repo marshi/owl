@@ -19,6 +19,8 @@ import java.util.Set;
 @NoArgsConstructor
 public class TicketNode {
 
+    public static final String ENTITY_NAME = "TicketNode";
+
     @GraphId
     private Long id;
 
@@ -39,7 +41,7 @@ public class TicketNode {
     }
 
     public static TicketNode convertFrom(Ticket ticket) {
-       return new TicketNode();
+       return new TicketNode(ticket.getId(), null);
     }
 
     public Ticket convert() {

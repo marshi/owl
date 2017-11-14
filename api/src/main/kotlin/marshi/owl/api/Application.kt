@@ -11,7 +11,7 @@ import org.springframework.context.annotation.ComponentScans
 import org.springframework.data.neo4j.repository.config.EnableNeo4jRepositories
 
 @SpringBootApplication
-@EnableNeo4jRepositories(basePackages = arrayOf("marshi.owl.data.graph"))
+@EnableNeo4jRepositories(basePackages = arrayOf("marshi.owl.data"))
 @MapperScan(basePackages = arrayOf("marshi.owl.data.rdb.mapper"))
 @EnableAutoConfiguration(exclude = arrayOf(
         DataSourceAutoConfiguration::class

@@ -1,9 +1,9 @@
 package marshi.owl.api.facade
 
-import marshi.owl.api.exception.TicketNotFound
 import marshi.owl.api.entity.RequestPath
+import marshi.owl.api.exception.InvalidParameterException
+import marshi.owl.domain.exception.PathConflictException
 import marshi.owl.domain.service.PathService
-import marshi.owl.domain.service.TicketService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
@@ -12,19 +12,18 @@ import org.springframework.stereotype.Service
  */
 @Service
 class PathFacade(
-    @Autowired val ticketService: TicketService,
     @Autowired val pathService: PathService
 ) {
 
-    fun create(requestPath: RequestPath) {
-        if (requestPath.prevTicketId == null || requestPath.nextTicketId == null) {
-            return
+    fun create(projectId: Long, requestPath: RequestPath) {
+        if (!requestPath.isValid()) {
+            throw InvalidParameterException()
         }
-        val prev = ticketService.find(requestPath.prevTicketId!!)
-        val next = ticketService.find(requestPath.nextTicketId!!)
-        prev ?: throw TicketNotFound("ticket not found")
-        next ?: throw TicketNotFound("ticket not found")
-        pathService.create(prev, next)
+        pathService.create(
+            projectId,
+            requestPath.prevTicketId!!,
+            requestPath.nextTicketId!!
+        )
     }
 
 }

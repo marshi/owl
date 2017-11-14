@@ -1,8 +1,7 @@
 package marshi.owl.api.controller
 
-import marshi.owl.api.exception.TicketNotFound
+import marshi.owl.domain.exception.TicketNotFound
 import marshi.owl.apiresponse.ticket.TicketListResponse
-import marshi.owl.api.entity.NextStepTicketModel
 import marshi.owl.domain.entity.Ticket
 import marshi.owl.api.facade.TicketFacade
 import org.springframework.beans.factory.annotation.Autowired
@@ -28,14 +27,14 @@ class TicketController(
         ticketFacade.create(ticket)
     }
 
-    @RequestMapping(value = "/{ticketId}", method = arrayOf(RequestMethod.PATCH))
-    fun depend(
-        @PathVariable("projectId") projectId: Long,
-        @PathVariable("ticketId") ticketId: Long,
-        @RequestBody nextStepTicketModel: NextStepTicketModel
-    ) {
-        ticketFacade.nextStep(ticketId, nextStepTicketModel)
-    }
+//    @RequestMapping(value = "/{ticketId}", method = arrayOf(RequestMethod.PATCH))
+//    fun depend(
+//        @PathVariable("projectId") projectId: Long,
+//        @PathVariable("ticketId") ticketId: Long,
+//        @RequestBody nextStepTicketModel: NextStepTicketModel
+//    ) {
+//        ticketFacade.nextStep(projectId, ticketId, nextStepTicketModel)
+//    }
 
     @RequestMapping(method = arrayOf(RequestMethod.GET))
     fun list(

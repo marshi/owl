@@ -11,6 +11,13 @@ import javax.validation.constraints.NotNull
 @Setter
 @NoArgsConstructor
 class RequestPath(
-        var prevTicketId: Long? = null,
-        var nextTicketId: Long? = null
-)
+    var prevTicketId: Long? = null,
+    var nextTicketId: Long? = null
+) {
+
+    fun isValid(): Boolean {
+        return prevTicketId != null && nextTicketId != null
+    }
+
+}
+

@@ -1,11 +1,14 @@
 package marshi.owl.domain.service
 
 import marshi.owl.domain.entity.Ticket
+import marshi.owl.domain.exception.TicketNotFound
 import marshi.owl.domain.repository.PathGraphRepositoryInterface
 import marshi.owl.domain.repository.TicketGraphRepositoryInterface
 import marshi.owl.domain.repository.TicketRepositoryInterface
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
+import java.text.MessageFormat
+import java.util.*
 
 /**
  * Created by a13178 on 2017/04/15.
@@ -21,23 +24,47 @@ class TicketService(
         ticketRepository.create(ticket)
     }
 
-    fun find(ticketId: Long): Ticket? {
+    fun findOptionalFromGraph(ticketId: Long): Optional<Ticket> {
         return ticketGraphRepository.findById(
-                ticketId,
-                1
-        ).orElse(null)
+            ticketId,
+            1
+        )
     }
 
-    fun linkPathToNextStep(ticketId: Long, nextTicket: Ticket) {
-        val ticket = find(ticketId)
-        ticket ?: return
-        val nextTicketModel = find(nextTicket.id!!)
-        nextTicketModel ?: return
-        ticket.nextStepTickets = ticket.nextStepTickets?.plus(nextTicketModel)
-        pathGraphRepository.save(ticket, nextTicketModel)
+    fun findFromGraph(ticketId: Long): Ticket {
+        return findOptionalFromGraph(ticketId)
+            .orElseThrow{
+                TicketNotFound(
+                    message = MessageFormat.format("ticketId = {0}", ticketId))
+            }
     }
 
-    fun  delete(ticketId: Long) {
+    fun findOptionalRecord(ticketId: Long): Optional<Ticket> {
+        return ticketRepository.find(ticketId)
+    }
+
+    fun findRecord(ticketId: Long): Ticket {
+        return findOptionalRecord(ticketId)
+            .orElseThrow{
+                TicketNotFound(
+                    message = MessageFormat.format("ticketId = {0}", ticketId))
+            }
+    }
+
+    fun existRecord(ticketId: Long): Boolean {
+        return findOptionalRecord(ticketId).isPresent
+    }
+
+//    fun linkPathToNextStep(projectId: Long, ticketId: Long, nextTicket: Ticket) {
+//        val ticket = find(ticketId)
+//        ticket ?: return
+//        val nextTicketModel = find(nextTicket.id!!)
+//        nextTicketModel ?: return
+//        ticket.nextStepTickets = ticket.nextStepTickets?.plus(nextTicketModel)
+//        pathGraphRepository.save(ticket, nextTicketModel)
+//    }
+
+    fun delete(ticketId: Long) {
         ticketGraphRepository.deleteById(ticketId)
     }
 

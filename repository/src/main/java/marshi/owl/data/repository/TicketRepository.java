@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -38,6 +39,13 @@ public class TicketRepository implements TicketRepositoryInterface {
         return result.stream().map(this::convertFrom).collect(Collectors.toList());
     }
 
+    @NotNull
+    @Override
+    public Optional<Ticket> find(long id) {
+        TicketRecord ticketRecord = ticketMapper.selectByPrimaryKey(id);
+        return Optional.ofNullable(ticketRecord).map(this::convertFrom);
+    }
+
     private static TicketRecord convert(Ticket ticket) {
         TicketRecord ticketRecord = new TicketRecord();
         ticketRecord.setId(ticket.getId());
@@ -59,5 +67,7 @@ public class TicketRepository implements TicketRepositoryInterface {
         );
 
     }
+
+
 }
 
