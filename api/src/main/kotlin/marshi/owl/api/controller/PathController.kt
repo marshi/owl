@@ -4,6 +4,7 @@ import marshi.owl.domain.exception.TicketNotFound
 import marshi.owl.api.entity.RequestPath
 import marshi.owl.api.exception.InvalidParameterException
 import marshi.owl.api.facade.PathFacade
+import marshi.owl.domain.entity.Path
 import marshi.owl.domain.exception.PathConflictException
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
@@ -36,12 +37,12 @@ class PathController(@Autowired val pathFacade: PathFacade) {
     }
 
     @RequestMapping(method = arrayOf(RequestMethod.GET))
-    fun paths(res: HttpServletResponse, @RequestBody requestPath: RequestPath) {
-//        try {
-//            pathFacade.create(requestPath)
-//        } catch (e: TicketNotFound) {
-//            res.status = HttpStatus.NOT_FOUND.value()
-//        }
+    fun paths(
+        res: HttpServletResponse,
+        @PathVariable("projectId") projectId: Long
+    ): List<Path> {
+        val list = pathFacade.list(projectId)
+        return list
     }
 
 }

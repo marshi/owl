@@ -1,10 +1,13 @@
 package marshi.owl.domain.entity
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 class Path(
-    private val id: Long?,
-    private val projectId: Long,
-    private val prevTicket: Ticket,
-    private val nextTicket: Ticket
+    val id: Long?,
+    val projectId: Long,
+    val prevTicket: Ticket,
+    val nextTicket: Ticket
 )
 
 

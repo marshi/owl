@@ -2,6 +2,7 @@ package marshi.owl.api.facade
 
 import marshi.owl.api.entity.RequestPath
 import marshi.owl.api.exception.InvalidParameterException
+import marshi.owl.domain.entity.Path
 import marshi.owl.domain.exception.PathConflictException
 import marshi.owl.domain.service.PathService
 import org.springframework.beans.factory.annotation.Autowired
@@ -25,6 +26,8 @@ class PathFacade(
             requestPath.nextTicketId!!
         )
     }
+
+    fun list(projectId: Long): List<Path> = pathService.list(projectId)
 
 }
 

@@ -20,4 +20,7 @@ public interface PathGraphRawRepository extends Neo4jRepository<PathData, Long> 
 			@Param("id2") long nextTicketId
 	);
 
+
+	List<PathData> findByProjectId(long projectId);
+
 }
