@@ -1,5 +1,6 @@
 package marshi.owl.domain.service
 
+import marshi.owl.domain.entity.Path
 import marshi.owl.domain.entity.Ticket
 import marshi.owl.domain.exception.PathConflictException
 import marshi.owl.domain.exception.TicketNotFound
@@ -30,6 +31,11 @@ class PathService(
         val next = ticketService.findOptionalFromGraph(nextTicketId)
             .orElse(Ticket(id = nextTicketId))
         pathGraphRepository.save(projectId, prev, next)
+    }
+
+    fun list(projectId: Long): List<Path> {
+        val list = pathGraphRepository.list(projectId)
+        return list
     }
 
 }

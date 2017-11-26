@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Repository
 public class PathGraphRepository implements PathGraphRepositoryInterface {
@@ -33,5 +34,13 @@ public class PathGraphRepository implements PathGraphRepositoryInterface {
 	public Optional<Path> findBy(long prevTicketId, long nextTicketId) {
 		PathData pathData = rawRepository.findByTicketIds(prevTicketId, nextTicketId);
 		return Optional.ofNullable(pathData).map(PathData::convert);
+	}
+
+	@Override
+	public List<Path> list(long projectId) {
+		List<PathData> pathList = rawRepository.findByProjectId(projectId);
+		return pathList.stream()
+				.map(PathData::convert)
+				.collect(Collectors.toList());
 	}
 }
