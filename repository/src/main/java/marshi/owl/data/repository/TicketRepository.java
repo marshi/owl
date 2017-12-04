@@ -35,7 +35,7 @@ public class TicketRepository implements TicketRepositoryInterface {
     @NotNull
     @Override
     public List<Ticket> list()  {
-        val result = ticketMapper.selectByExample(new TicketRecordExample());
+        val result = ticketMapper.selectByExampleWithBLOBs(new TicketRecordExample());
         return result.stream().map(this::convertFrom).collect(Collectors.toList());
     }
 
@@ -69,5 +69,11 @@ public class TicketRepository implements TicketRepositoryInterface {
     }
 
 
+    @Override
+    public boolean update(long ticketId, @NotNull Ticket ticket) {
+        TicketRecord record = convert(ticket);
+        record.setId(ticketId);
+        return ticketMapper.updateByPrimaryKeySelective(record) == 1;
+    }
 }
 

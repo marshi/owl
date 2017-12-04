@@ -39,4 +39,8 @@ class TicketFacade(
         return TicketListResponse(list, null)
     }
 
+  fun update(ticketId: Long, ticket: Ticket) {
+      ticketService.update(ticketId, ticket)
+  }
+
 }
