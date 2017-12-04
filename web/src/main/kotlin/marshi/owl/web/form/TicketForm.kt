@@ -5,7 +5,7 @@ import marshi.owl.domain.entity.Ticket
 class TicketForm(
     val title: String?,
     val content: String?,
-    val projectId: Long?,
+    val projectId: Long,
     val assigneeId: Int?
 ) {
 

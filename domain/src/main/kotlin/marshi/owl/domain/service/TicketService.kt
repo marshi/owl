@@ -72,4 +72,8 @@ class TicketService(
         return ticketRepository.list()
     }
 
+    fun update(ticketId: Long, ticket: Ticket) {
+        ticketRepository.update(ticketId, ticket)
+    }
+
 }

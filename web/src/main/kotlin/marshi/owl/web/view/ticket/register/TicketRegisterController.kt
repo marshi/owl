@@ -2,6 +2,7 @@ package marshi.owl.web.view.ticket.register
 
 import marshi.owl.web.form.TicketForm
 import marshi.owl.web.repository.ticket.TicketRepository
+import marshi.owl.web.utils.Redirector
 import marshi.owl.web.view.ticket.list.TicketListFacade
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
@@ -28,7 +29,10 @@ class TicketRegisterController(
         @ModelAttribute("ticket") ticketForm: TicketForm
     ): ModelAndView {
         ticketRepository.create(ticketForm.convertTo())
-        return ModelAndView("redirect:/ticket/list")
+        val redirect = Redirector("/ticket/list")
+            .parameter("projectId", ticketForm.projectId)
+            .redirect()
+        return ModelAndView(redirect)
     }
 
 }
