@@ -1,9 +1,7 @@
 package marshi.owl.domain.entity
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
-import lombok.Getter
-import lombok.NoArgsConstructor
-import lombok.Setter
+import java.util.*
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 class Ticket(
@@ -12,7 +10,7 @@ class Ticket(
     var content: String? = null,
     var projectId: Long? = null,
     var assigneeId: Int? = null,
-    var nextStepTickets: Set<Ticket>? = mutableSetOf()
+    var deadline: Date? = null
 )
 
 

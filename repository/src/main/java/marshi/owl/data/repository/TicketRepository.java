@@ -46,6 +46,13 @@ public class TicketRepository implements TicketRepositoryInterface {
         return Optional.ofNullable(ticketRecord).map(this::convertFrom);
     }
 
+    @Override
+    public boolean update(long ticketId, @NotNull Ticket ticket) {
+        TicketRecord record = convert(ticket);
+        record.setId(ticketId);
+        return ticketMapper.updateByPrimaryKeySelective(record) == 1;
+    }
+
     private static TicketRecord convert(Ticket ticket) {
         TicketRecord ticketRecord = new TicketRecord();
         ticketRecord.setId(ticket.getId());
@@ -53,6 +60,7 @@ public class TicketRepository implements TicketRepositoryInterface {
         ticketRecord.setContent(ticket.getContent());
         ticketRecord.setTitle(ticket.getTitle());
         ticketRecord.setProjectId(ticket.getProjectId());
+        ticketRecord.setDeadline(ticket.getDeadline());
         return ticketRecord;
     }
 
@@ -63,17 +71,9 @@ public class TicketRepository implements TicketRepositoryInterface {
                 t.getContent(),
                 t.getProjectId(),
                 t.getAssigneeId(),
-                null
+                t.getDeadline()
         );
 
-    }
-
-
-    @Override
-    public boolean update(long ticketId, @NotNull Ticket ticket) {
-        TicketRecord record = convert(ticket);
-        record.setId(ticketId);
-        return ticketMapper.updateByPrimaryKeySelective(record) == 1;
     }
 }
 
