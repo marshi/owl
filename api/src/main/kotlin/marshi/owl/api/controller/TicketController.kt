@@ -14,13 +14,13 @@ import javax.servlet.http.HttpServletResponse
  *
  */
 @RestController
-@CrossOrigin(origins = arrayOf("http://localhost:8888"))
+@CrossOrigin(origins = ["http://localhost:8888"])
 @RequestMapping(value = "/projects/{projectId}/tickets")
 class TicketController(
     @Autowired val ticketFacade: TicketFacade
 ) {
 
-    @RequestMapping(method = arrayOf(RequestMethod.POST))
+    @RequestMapping(method = [(RequestMethod.POST)])
     fun create(
         @PathVariable("projectId") projectId: Long,
         @RequestBody ticket: Ticket
@@ -28,7 +28,7 @@ class TicketController(
         ticketFacade.create(ticket)
     }
 
-    @RequestMapping(value = "/{ticketId}", method = arrayOf(RequestMethod.PATCH))
+    @RequestMapping(value = "/{ticketId}", method = [(RequestMethod.PATCH)])
     fun depend(
         @PathVariable("ticketId") ticketId: Long,
         @RequestBody ticket: Ticket
@@ -43,7 +43,7 @@ class TicketController(
         return ticketFacade.list()
     }
 
-    @RequestMapping(value = "/{ticketId}", method = arrayOf(RequestMethod.GET))
+    @RequestMapping(value = "/{ticketId}", method = [(RequestMethod.GET)])
     fun get(
         @PathVariable("projectId") projectId: Long,
         @PathVariable ticketId: Long,
@@ -57,7 +57,7 @@ class TicketController(
         }
     }
 
-    @RequestMapping(value = "/{ticketId}", method = arrayOf(RequestMethod.DELETE))
+    @RequestMapping(value = "/{ticketId}", method = [(RequestMethod.DELETE)])
     fun delete(
         @PathVariable("projectId") projectId: Long,
         @PathVariable ticketId: Long,

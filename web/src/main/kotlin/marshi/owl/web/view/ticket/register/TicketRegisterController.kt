@@ -17,14 +17,14 @@ class TicketRegisterController(
     @Autowired private val ticketRepository: TicketRepository
 ) {
 
-    @RequestMapping(value = "/ticket/register", method = arrayOf(RequestMethod.GET))
+    @RequestMapping(value = "/ticket/register", method = [(RequestMethod.GET)])
     fun registerInput(
         @ModelAttribute("ticket") ticketForm: TicketForm
     ): ModelAndView {
         return ticketRegisterFacade.registerForm()
     }
 
-    @RequestMapping(value = "/ticket/register", method = arrayOf(RequestMethod.POST))
+    @RequestMapping(value = "/ticket/register", method = [(RequestMethod.POST)])
     fun register(
         @ModelAttribute("ticket") ticketForm: TicketForm
     ): ModelAndView {

@@ -12,7 +12,7 @@ class TicketListController(
     @Autowired private val ticketFacade: TicketListFacade
 ) {
 
-    @RequestMapping(value = "/ticket/list", method = arrayOf(RequestMethod.GET))
+    @RequestMapping(value = "/ticket/list", method = [(RequestMethod.GET)])
     fun list(
         @RequestParam("projectId") projectId: Long
     ): ModelAndView {

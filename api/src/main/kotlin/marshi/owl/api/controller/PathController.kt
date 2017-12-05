@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse
 @RequestMapping(value = "/projects/{projectId}/paths")
 class PathController(@Autowired val pathFacade: PathFacade) {
 
-    @RequestMapping(method = arrayOf(RequestMethod.POST))
+    @RequestMapping(method = [(RequestMethod.POST)])
     fun create(
         res: HttpServletResponse,
         @RequestBody requestPath: RequestPath,
@@ -36,7 +36,7 @@ class PathController(@Autowired val pathFacade: PathFacade) {
         }
     }
 
-    @RequestMapping(method = arrayOf(RequestMethod.GET))
+    @RequestMapping(method = [(RequestMethod.GET)])
     fun paths(
         res: HttpServletResponse,
         @PathVariable("projectId") projectId: Long
