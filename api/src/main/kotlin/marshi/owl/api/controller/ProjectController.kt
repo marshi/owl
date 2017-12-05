@@ -15,13 +15,13 @@ class ProjectController(
     @Autowired private val projectFacade: ProjectFacade
 ) {
 
-    @RequestMapping(method = arrayOf(RequestMethod.GET))
+    @RequestMapping(method = [(RequestMethod.GET)])
     fun list(): ProjectListResponse {
         val list = projectFacade.list()
         return ProjectListResponse(list, null)
     }
 
-    @RequestMapping(method = arrayOf(RequestMethod.POST))
+    @RequestMapping(method = [(RequestMethod.POST)])
     fun create(
         @RequestBody project: Project
     ) {
