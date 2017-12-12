@@ -5,3 +5,5 @@ spring:
   thymeleaf.prefix: classpath:/templates/html/
   session.store-type:
     - springframework.session.jdbc.JdbcOperationsSessionRepository
+  devtools.restart.additional-paths: web/src/main/resources/templates
+
