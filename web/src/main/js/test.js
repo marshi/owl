@@ -1,10 +1,13 @@
 import Vue from 'vue'
+import App from './App'
 
 var v = new Vue({
   el: '#app',
-  template: '<div id="app">{{message}}</div>',
+  // template: "<App></App>",
+  // components: { App },
   data: {
-    message: "aieuo"
+    message: "aieuo",
+    x1: 100
   }
 })
 
