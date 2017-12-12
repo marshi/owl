@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="/js/vendor.bundle.js"></script>
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <svg viewbox="0 0 300 300" width="300" height="300">
+        <line :x1="x1" y1=100 x2=200 y2=200 stroke="black"></line>
+    </svg>
+    <form>
+        <input type="range" v-model="x1">
+    </form>
+    <span v-text="message"></span>
+</div>
+<script src="/js/test.bundle.js"></script>
+
+</body>
+</html>

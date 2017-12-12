@@ -15,19 +15,31 @@ module.exports = {
   },
   // ローダーの設定
   module: {
-    rules: [{
-      // ローダーの処理対象ファイル
-      test: /\.js$/,
-      // ローダーの処理対象から外すディレクトリ
-      exclude: /node_modules/,
-      // 利用するローダー
-      use: [{
-        loader: 'babel-loader',
-        options: {
-          presets: ['env']
-        }
-      }]
-    }]
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: [{
+          loader: 'babel-loader',
+          options: {
+            presets: ['env']
+          }
+        }]
+      },
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader'
+      }
+    ]
+  },
+  resolve: {
+    extensions: ['.js', '.vue'],
+    modules: [
+      "node_modules"
+    ],
+    alias: {
+      vue: 'vue/dist/vue.common.js'
+    }
   },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
